@@ -51,6 +51,14 @@
 			name = ExpensTracker;
 			sourceTree = "<group>";
 		};
+		1FA0C7EB4ADD4ED8AA8D0BBE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +83,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				1FA0C7EB4ADD4ED8AA8D0BBE /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
