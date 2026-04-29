@@ -23,5 +23,5 @@ A simple budget app to track:
 assets/screenshot.png
 
 <p align="center">
-  <img src="assets/screenshot.png" width="300" />
+  <img src="assets/AppScreenShot.png" width="300" />
 </p>
