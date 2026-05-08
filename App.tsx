@@ -276,6 +276,7 @@ const BudgetScreen: React.FC = () => {
   }, [splashOpacity]);
   const [income, setIncome] = useState<BudgetItem[]>([]);
   const [expenses, setExpenses] = useState<BudgetItem[]>([]);
+  const [storageLoaded, setStorageLoaded] = useState(false);
   // inputRefs stores references to inputs so we can focus and control them.
 
   const scrollRef = useRef<ScrollView | null>(null);
@@ -374,17 +375,32 @@ const BudgetScreen: React.FC = () => {
   /* Persist data to AsyncStorage */
 
   useEffect(() => {
+    if (!storageLoaded) {
+      return;
+    }
+
     AsyncStorage.setItem('DATA', JSON.stringify({ income, expenses }));
-  }, [income, expenses]);
+  }, [income, expenses, storageLoaded]);
 
   useEffect(() => {
-    AsyncStorage.getItem('DATA').then(data => {
-      if (data) {
-        const parsed = JSON.parse(data);
-        setIncome(parsed.income || []);
-        setExpenses(parsed.expenses || []);
+    const loadData = async () => {
+      try {
+        const data = await AsyncStorage.getItem('DATA');
+
+        if (data) {
+          const parsed = JSON.parse(data);
+
+          setIncome(parsed.income || []);
+          setExpenses(parsed.expenses || []);
+        }
+      } catch (e) {
+        console.log('Load error', e);
+      } finally {
+        setStorageLoaded(true);
       }
-    });
+    };
+
+    loadData();
   }, []);
 
   /* Prepare chart data for breakdown */
